@@ -56,9 +56,20 @@ the data captures real cell behavior rather than an idealized curve.
 
 ## 6. Next Steps
 
-- Build a lookup function to interpolate SoC from a given voltage (and vice 
-  versa) using this curve
 - Fuse this true OCV data with the Coulomb counting method from the earlier 
   project
 - Explore an Extended Kalman Filter (EKF) combining both methods for a more 
   production-realistic SoC estimator
+
+## 7. OCV Lookup Function
+
+Built interpolation functions (`voltage_to_soc`, `soc_to_voltage`) using 
+`numpy.interp` over the 19 measured discharge-sweep OCV points, allowing 
+SoC to be estimated from any voltage reading (or vice versa) within the 
+measured range.
+
+**Example:** 3.6V → ~30.2% SoC, 50% SoC → ~3.66V — both consistent with the 
+directly measured reference points.
+
+This function will be used as the voltage-correction component when fusing 
+with Coulomb counting in later work (drift correction / EKF).

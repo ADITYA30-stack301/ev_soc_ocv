@@ -55,3 +55,9 @@ plt.legend()
 plt.grid(True)
 plt.savefig("true_ocv_curve.png")
 print("Saved true OCV curve!")
+
+ocv_points.to_csv("ocv_soc_points.csv", index=False)
+print("Saved OCV points")
+
+check = pd.read_csv("ocv_soc_points.csv")
+print(check)
